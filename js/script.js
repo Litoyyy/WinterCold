@@ -281,7 +281,78 @@ function infoOpenModal(elem) {
     titleText.html('')
     bodyText.html('')
     
-    
+    if (type === 'type-1') {
+        titleText.html(`
+            <div class="modal-title center">Чтобы воспользоваться быстрым бронированием выполните вход или зарегистрируйтесь на сайте</div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        `)
+        bodyText.html(`
+        <div class="info-block">
+            <div class="item">
+                <div class="name">Вход</div>
+                <form class="application-block">
+                    <label class="field">
+                        <span>Номер телефона или email</span>
+                        <input name="name_email" type="text">
+                    </label>
+                    <label class="field">
+                        <span>Пароль</span>
+                        <input name="password" type="password">
+                    </label>
+                    <div class="fb">
+                        <div class="field-block">
+                            <label class="checkbox-block">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="check" name"remember" class="no-r">
+                                    <div>
+                                        <svg viewBox="0,0,50,50">
+                                            <path d="M5 30 L 20 45 L 45 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span>Запомнить меня</span>
+                            </label>
+                            <a href="#" class="recover-pass">Забыли пароль?</a>
+                        </div>
+                        <div class="btn checkField">Войти</div>
+                    </div>
+                </form>
+            </div>
+            <div class="item">
+                <div class="name">Регистрация</div>
+                <form class="application-block">
+                    <label class="field">
+                        <span>Имя*</span>
+                        <input name="name" type="text">
+                    </label>
+                    <label class="field">
+                        <span>Имя*</span>
+                        <input name="email" type="text">
+                    </label>
+                    <label class="field">
+                        <span>Номер телефона*</span>
+                        <input name="phone" type="text" class="mask-phone">
+                    </label>
+                    <div class="fb">
+                        <label class="checkbox-block">
+                            <div class="checkbox">
+                                <input type="checkbox" id="check" name="rules" checked>
+                                <div>
+                                    <svg viewBox="0,0,50,50">
+                                        <path d="M5 30 L 20 45 L 45 5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span>Вы соглашаетесь с правилами</span>
+                        </label>
+                        <div class="btn white border checkField">Зарегистрироваться</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `)
+
+    }
     maskField()
     $('#infoModal').modal('show')
 }
