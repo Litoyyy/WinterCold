@@ -24,6 +24,7 @@ new Swiper(".mainSlider", {
       prevEl: ".mainSlider .swiper-button-prev",
     },
 });
+
 new Swiper(".newProductSlider", {
     slidesPerView: 4,
     spaceBetween: 25,
@@ -33,6 +34,7 @@ new Swiper(".newProductSlider", {
       prevEl: ".newProductSection .swiper-button-prev",
     },
 });
+
 new Swiper(".popularProductSlider", {
     slidesPerView: 4,
     spaceBetween: 25,
@@ -42,12 +44,13 @@ new Swiper(".popularProductSlider", {
       prevEl: ".popularProductSection .swiper-button-prev",
     },
 });
+
 new Swiper(".blogSlider", {
     slidesPerView: 1.1,
     loop: true,
     navigation: {
-      nextEl: ".blogSection .swiper-button-next",
-      prevEl: ".blogSection .swiper-button-prev",
+      nextEl: ".blogSlider .swiper-button-next",
+      prevEl: ".blogSlider .swiper-button-prev",
     },
 });
 
@@ -55,7 +58,6 @@ $(document).on('click', '.checkField', function (el) {
   el.preventDefault();
   checkField(el)
 })
-
 function checkField(el) {
     let field = $(el.target).parents('form').find('input, textarea, select'),
         rating = $(el.target).parents('form').find('.rating-mini')
@@ -185,7 +187,6 @@ function checkField(el) {
     }
     if ($(el.target).parents('form').find('.error').length == 0) {
         sendAjax(field, el)
-        ym(94525815,'reachGoal','send_order')
         clearFields()
     }
 }
@@ -235,6 +236,9 @@ function sendAjax(dataForm, el) {
         contentType: 'application/json',
         success: function (response) {
             clearFields()
+            if (response.error) {
+                $('.message').html(response.message)
+            }
         },
         error: function (error) {
             console.log(error)
@@ -276,21 +280,54 @@ function infoOpenModal(elem) {
         bodyText = $('.modal#infoModal .modal-body')
     titleText.html('')
     bodyText.html('')
-    if (type == 'type-1') {
-        titleText.html(`
-            <div class="h1 _title36 modal-title" id="exampleModalLabel">Заказать обратный звонок</div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        `)
-        bodyText.html(`
-            <form class="application-block">
-                <input type="phone" class="mask-phone" placeholder="Номер телефона" name="phone">
-                <div class="desc">Нажимая кнопку “Отправить” вы даете согласие на обработку персональных данных</div>
-                <div class="btn-block">
-                    <div class="btn btnBlack checkField" data-create="feedback_request" data-request="success-modal">Отправить</div>
-                </div>
-            </form>
-        `)
-    }
+    
+    
     maskField()
     $('#infoModal').modal('show')
 }
+
+// $('footer .logo').on('click', function(elem) {
+//     test('222', elem)
+// })
+
+// $('footer .logo').hover(function(elem) {
+//     test('', $(this))
+// })
+
+
+// $(this) == $('footer .logo')
+
+
+// function test(dataForm, el) {
+//     // $(el).css({
+//     //     'background-color': '#ffffff'
+//     // })
+//     $(el).animate({
+//         marginLeft: '+=50px',
+//         opacity: '+=0.25'
+//     }, 1000)
+// }
+
+// $('form input').on('input', function() {
+//     let s = $(this),
+//         s_clear = $.trim($(s).val())
+
+//     if (s_clear.length > 0) {
+//         $(this).removeClass('error')
+//     } else {
+//         $(this).addClass('error')
+//     }
+// })
+// $('form select').on('change', function() {
+//     let value = $(this).val()
+
+//     if (value > 5) {
+//         console.log(1);
+//     } else if (value == 1) {
+//         console.log(3);
+//     } else if (value == 'gdsgdfgdf') {
+//         $(this).after('<div class="btn open-modal" data-type-modal="test">Open Modal</div>')
+//     } else {
+//         console.log(2);
+//     }
+// })
