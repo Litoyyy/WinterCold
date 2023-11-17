@@ -54,9 +54,9 @@ a i {
     display: inline-block;
     text-decoration: none;
     color: $black;
-    transition: all .3s;
     cursor: pointer;
-} 
+    transition: all .3s;
+}
 a:hover,
 a:hover i {
     color: rgba(14, 14, 14, 0.7);
@@ -100,15 +100,15 @@ select {
         border-color: red!important;
     }
 }
-// select {
-//     -webkit-appearance: none;
-//     -moz-appearance: none;
-//     appearance: none;
-//     background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' fill='none'%3e%3cpath d='M4.2907 7.42566L0.618285 0.675658L7.96313 0.675659L4.2907 7.42566Z' fill='%23444444'/%3e%3c/svg%3e") calc(100% - 5px) / 10px no-repeat $white;
-//     &::-ms-expand {
-//         display: none;
-//     }
-// }
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512'%3e%3c!--! Font Awesome Free 6.4.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3e%3cpath d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'/%3e%3c/svg%3e") calc(100% - 15px) / 10px no-repeat $white;
+    &::-ms-expand {
+        display: none;
+    }
+}
 .mt0 {
     margin-top: 0!important;
 }
@@ -1011,6 +1011,7 @@ footer {
         }
     }
 }
+
 .checkbox-block {
     cursor: pointer;
     display: flex;
@@ -1045,7 +1046,6 @@ footer {
         border: 2px solid $black;
         width: 20px;
         height: 20px;
-        border-radius: 3px;
         cursor: pointer;
         transition: all .2s ease;
         &:active {
@@ -1072,64 +1072,209 @@ footer {
 }
 
 .modal {
-    .modal-content {
-        padding: 40px 80px;
-        .modal-header {
-            position: relative;
-            font-size: var(--fz18);
-            font-weight: 500;
-            &.center {
-                text-align: center;
-            }
-        }
-        .btn-close {
-            position: absolute;
-            top: 50%;
-            right: 40px;
-            background-color: $white;
-            opacity: 1;
-            border-radius: 0;
-            filter: invert(1);
-            padding: 9px 10px;
-            transform: translateY(calc(-50% + 9px));
-        }
-    }
-    .modal-body {
-        padding: 0;
-        >.info-block {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            .item {
-                padding: 40px 70px;
-                display: flex;
-                flex-direction: column;
-                gap: 25px;
-
-                &:nth-child(2) {
-                    background-color: $lgrey;
-                }
-                .name {
-                    font-size: var(--fz21);
+    &#infoModal {
+        .modal-content {
+            .modal-header {
+                padding: 40px 80px;
+                position: relative;
+                .modal-title {
+                    font-size: var(--fz18);
                     font-weight: 500;
+                    &.center {
+                        text-align: center;
+                    }
                 }
-                .application-block {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 25px;
-                    .field {
+                .btn-close {
+                    position: absolute;
+                    top: 50%;
+                    right: 40px;
+                    background-color: $white;
+                    opacity: 1;
+                    border-radius: 0;
+                    filter: invert(1);
+                    padding: 9px 10px;
+                    transform: translateY(calc(-50% + 9px));
+                }
+            }
+            .modal-body {
+                padding: 0;
+                > .info-block {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                    &.map {
+                        grid-template-columns: 2fr 1fr;
+                    }
+                    .item {
+                        padding: 40px 70px;
                         display: flex;
                         flex-direction: column;
-                        gap: 5px;
-                        >span {
-                            font-size: var(--fz12);
-                            color: $dgrey;
+                        gap: 25px;
+                        &:nth-child(2) {
+                            background-color: $lgrey;
+                        }
+                        .name {
+                            font-size: var(--fz21);
+                            font-weight: 500;
+                        }
+                        .application-block {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 25px;
+                            .field {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                                > span {
+                                    font-size: var(--fz12);
+                                    color: $dgrey;
+                                }
+                            }
+                            .fb {
+                                margin-top: -5px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 40px;
+                                .field-block {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    gap: 10px;
+                                    .recover-pass {
+                                        color: $dgrey;
+                                    }
+                                }
+                            }
                         }
                     }
-                    .fb {
-                        margin-top: -5px;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 40px;
+                }
+            }
+        }
+    }
+    &#mapModal {
+        .modal-dialog {
+            max-width: 1360px;
+            .modal-content {
+                .modal-header {
+                    border: 0;
+
+                }
+                .modal-body {
+                    padding: 0 68px 40px;
+                    .info-block {
+                        display: grid;
+                        grid-template-columns: 2fr 1fr;
+                        gap: 20px 53px;
+                        .item {
+                            #map {
+                                height: 575px;
+                            }
+                        }
+                    }
+                    .item {
+                        .city {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px 22px;
+                            select {
+                                flex: 1;
+                            }
+                        }
+                        &.main {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 40px;
+                        }
+                        .tab-list {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 17px;
+                            .name-block-main {
+                                width: 100%;
+                                overflow-x: auto;
+                                position: relative;
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    height: 1px;
+                                    width: 100%;
+                                    background-color: $grey;
+                                }
+                                .name-block {
+                                    display: flex;
+                                    align-items: flex-end;
+                                    position: relative;
+                                    z-index: 1;
+                                    > span {
+                                        display: block;
+                                        padding: 5px 10px;
+                                        white-space: nowrap;
+                                        color: $dgrey;
+                                        font-weight: 500;
+                                        border-bottom: 2px solid transparent;
+                                        transition: all .3s;
+                                        cursor: pointer;
+                                        &.active {
+                                            color: $red;
+                                            border-color: $red;
+                                        }
+                                    }
+                                }
+                            }
+                            .list {
+                                ul {
+                                    padding: 0;
+                                    margin: 0;
+                                    list-style: none;
+                                    &:not(.active) {
+                                        display: none;
+                                    }
+                                    li {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        gap: 10px;
+                                        cursor: pointer;
+                                        padding: 14px 0;
+                                        border-bottom: 1px solid $grey;
+                                        transition: all .3s;
+                                        &:last-of-type {
+                                            border-bottom: 0;
+                                        }
+                                        &::after {
+                                            content: '';
+                                            width: 8px;
+                                            height: 12px;
+                                            @include bg_s;
+                                            display: block;
+                                            pointer-events: none;
+                                            background-size: contain;
+                                            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 320 512'%3e%3c!--! Font Awesome Free 6.4.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3e%3cpath d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'/%3e%3c/svg%3e");
+                                        }
+                                        &:hover {
+                                            background-color: $lgrey;
+                                            padding-left: 10px;
+                                            padding-right: 10px;
+                                            border-bottom-color: $lgrey;
+                                        }
+                                        .name {
+                                            font-weight: 500;
+                                            color: $black;
+                                        }
+                                        .add {
+                                            font-size: 8px;
+                                            margin: 2px 0 4px;
+                                            color: $text_gray;
+                                            font-weight: 500;
+                                        }
+                                        .price {
+                                            font-size: var(--fz12);
+                                            color: $black;
+                                            margin-top: 1px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
