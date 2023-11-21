@@ -54,6 +54,16 @@ new Swiper(".blogSlider", {
     },
 });
 
+new Swiper(".categorySlider", {
+    slidesPerView: 9,
+    loop: true,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: ".categoryMiniSection .swiper-button-next",
+      prevEl: ".categoryMiniSection .swiper-button-prev",
+    },
+});
+
 $(document).on('click', '.checkField', function (el) {
   el.preventDefault();
   checkField(el)
@@ -434,6 +444,13 @@ $(document).on('click', '[data-tab]', function() {
         $(this).parents('.tab-list').find(`.name-block-main span.active`).removeClass('active')
         content.addClass('active')
         $(this).addClass('active')
+})
+
+$('.variants .item_a ul li').on('click', function (){
+    let text = $(this).text()
+    $(this).parents('.name').find('> span').text(text),
+    $(this).parents('ul').find('> li').removeClass ('active')
+    $(this).addClass ('active')
 })
 
 
